@@ -11,6 +11,8 @@ import {
 
 import {BackgroundImage, Styles} from './home';
 
+import HomeView from './home';
+
 var exercises = ["Burpees", "Squats", "Wall Squat", "Pushups", "Situps"];
 
 var repCounts = [10, 15, 20, 25, 30];
@@ -52,15 +54,29 @@ class ExerciseText extends Component {
     }
   }
 
+  returnHome() {
+    this.props.navigator.push({
+      title: "Home",
+      component: HomeView,
+    });
+  }
+
   render() {
     let exerciseButtons = null;
     if(this.state.counter === 0){
       exerciseButtons = 
-        <TouchableHighlight key="NextButton" onPress={() => this.nextExercise()} style={Styles.button}>
-          <Text key="NextText" style={Styles.buttonText}>
-            Next Exercise
-          </Text>
-        </TouchableHighlight>
+        <View>
+          <TouchableHighlight key="NextButton" onPress={() => this.nextExercise()} style={Styles.button}>
+            <Text key="NextText" style={Styles.buttonText}>
+              Next Exercise
+            </Text>
+          </TouchableHighlight>
+          <TouchableHighlight onPress={() => this.returnHome()} style={Styles.button}>
+            <Text style={Styles.buttonText}>
+              Return Home
+            </Text>
+          </TouchableHighlight>
+        </View>
     }else if(this.state.counter < this.props.exerciseSet.length){
       exerciseButtons = 
         <View>
@@ -77,11 +93,18 @@ class ExerciseText extends Component {
         </View>
     }else{
       exerciseButtons = 
-        <TouchableHighlight key="PreviousButton" onPress={() => this.previousExercise()} style={Styles.button}>
-          <Text key="PreviousText" style={Styles.buttonText}>
-            Previous Exercise
-          </Text>
-        </TouchableHighlight>
+        <View>
+          <TouchableHighlight onPress={() => this.returnHome()} style={Styles.button}>
+            <Text style={Styles.buttonText}>
+              Return Home
+            </Text>
+          </TouchableHighlight>
+          <TouchableHighlight key="PreviousButton" onPress={() => this.previousExercise()} style={Styles.button}>
+            <Text key="PreviousText" style={Styles.buttonText}>
+              Previous Exercise
+            </Text>
+          </TouchableHighlight>
+        </View>
     }
 
     return (
@@ -110,7 +133,10 @@ export default class ExerciseView extends Component {
     return (
       <BackgroundImage source={require("./exercise.png")} style={Styles.backgroundImage}>
         <View style={Styles.container}>
-          <ExerciseText exerciseSet={this.generateExerciseSet(this.props.userName)} />
+          <ExerciseText 
+            exerciseSet={this.generateExerciseSet(this.props.userName)}
+            navigator={this.props.navigator}
+          />
         </View>
       </BackgroundImage>
     );
