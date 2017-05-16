@@ -88,6 +88,7 @@ class NameTextInput extends Component {
         onChangeText={(text) => this.setState({text})}
         value={this.state.text}
         returnKeyType={'go'}
+        onSubmitEditing={this.props.onSubmitEditing}
       />
     );
   }
@@ -117,7 +118,7 @@ export default class HomeView extends Component {
           <Text style={styles.header}>
             Enter Your Name
           </Text>
-          <NameTextInput />
+          <NameTextInput onSubmitEditing={this.nextScreen} />
           <TouchableHighlight style={styles.button} onPress={(this.nextScreen)}>
             <Text style={styles.buttonText}>
               Start My Workout
