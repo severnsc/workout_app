@@ -11,6 +11,7 @@ import {
   StyleSheet,
   Text,
   TextInput,
+  TouchableHighlight,
   View
 } from 'react-native';
 
@@ -40,10 +41,26 @@ var styles = StyleSheet.create({
     borderWidth: 0.5,
     textAlign: 'center',
     borderRadius: 5,
-    backgroundColor: 'rgba(255,255,255,.9)',
+    backgroundColor: '#ffffff',
     marginLeft: 15,
     marginRight: 15,
   },
+  button: {
+    flex: 1,
+    maxHeight: 36,
+    backgroundColor: "rgba(117,205,230,1)",
+    borderColor: "#0f0f0f",
+    borderWidth: 1,
+    borderRadius: 8,
+    marginTop: 10,
+    justifyContent: "center",
+  },
+  buttonText: {
+    color: '#ffffff',
+    fontWeight: 'bold',
+    justifyContent: 'center',
+    margin: 10,
+  }
 });
 
 class BackgroundImage extends Component {
@@ -84,6 +101,11 @@ export default class WorkoutApp extends Component {
             Enter Your Name
           </Text>
           <NameTextInput />
+          <TouchableHighlight style={styles.button}>
+            <Text style={styles.buttonText}>
+              Start My Workout
+            </Text>
+          </TouchableHighlight>
         </View>
       </BackgroundImage>
     );
