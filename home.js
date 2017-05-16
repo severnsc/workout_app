@@ -17,7 +17,7 @@ import {
 
 import ExerciseView from "./exercise";
 
-var styles = StyleSheet.create({
+export const Styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
@@ -68,7 +68,7 @@ var styles = StyleSheet.create({
 class BackgroundImage extends Component {
   render() {
     return (
-      <Image source={this.props.source} style={styles.backgroundImage}>
+      <Image source={this.props.source} style={Styles.backgroundImage}>
         {this.props.children}
       </Image>
     )
@@ -84,7 +84,7 @@ class NameTextInput extends Component {
   render() {
     return (
       <TextInput
-      style={styles.nameInput}
+      style={Styles.nameInput}
         onChangeText={(text) => this.setState({text})}
         value={this.state.text}
         returnKeyType={'go'}
@@ -105,22 +105,19 @@ export default class HomeView extends Component {
   this.props.navigator.push({
     title: "Exercise",
     component: ExerciseView,
-    passProps: {
-      entry: entry
-    }
   });
  }
 
   render() {
     return (
       <BackgroundImage source={require('./running_woman.png')}>
-        <View style={styles.container}>
-          <Text style={styles.header}>
+        <View style={Styles.container}>
+          <Text style={Styles.header}>
             Enter Your Name
           </Text>
           <NameTextInput onSubmitEditing={this.nextScreen} />
-          <TouchableHighlight style={styles.button} onPress={(this.nextScreen)}>
-            <Text style={styles.buttonText}>
+          <TouchableHighlight style={Styles.button} onPress={(this.nextScreen)}>
+            <Text style={Styles.buttonText}>
               Start My Workout
             </Text>
           </TouchableHighlight>
