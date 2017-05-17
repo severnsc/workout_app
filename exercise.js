@@ -20,6 +20,36 @@ var getRandomArrayItem = function(array){
   return rand;
 }
 
+class ExerciseText extends Component {
+  constructor(props){
+    super(props);
+    this.state = {currentExercise: "tet"};
+  }
+
+  nextExercise() {
+    if(this.props.exerciseSet.length > 0){
+      this.setState({currentExercise: this.props.exerciseSet.pop()})
+    }else{
+      this.setState({currentExercise: "Workout Done!"})
+    }
+  }
+
+  render() {
+    return (
+      <View>
+        <Text style={Styles.header}>
+          {this.state.currentExercise}
+        </Text>
+        <TouchableHighlight onPress={() => this.nextExercise()} style={Styles.button}>
+          <Text style={Styles.buttonText}>
+            Next Exercise
+          </Text>
+        </TouchableHighlight>
+      </View>
+    );
+  }
+}
+
 export default class ExerciseView extends Component {
 
   generateExerciseSet(name) {
@@ -35,9 +65,7 @@ export default class ExerciseView extends Component {
     return (
       <BackgroundImage source={require("./exercise.png")} style={Styles.backgroundImage}>
         <View style={Styles.container}>
-          <Text style={Styles.header}>
-            {this.generateExerciseSet(this.props.userName)}
-          </Text>
+          <ExerciseText exerciseSet={this.generateExerciseSet(this.props.userName)} />
         </View>
       </BackgroundImage>
     );
