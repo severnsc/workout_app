@@ -24,29 +24,48 @@ class ExerciseText extends Component {
   constructor(props){
     super(props);
     this.state = {
-      currentExercise: this.props.exerciseSet[0],
       counter: 0,
     };
   }
 
   nextExercise() {
     if(this.state.counter < this.props.exerciseSet.length){
-      this.setState({counter: this.state.counter + 1});
-      this.setState({currentExercise: this.props.exerciseSet[this.state.counter]});
+      this.setState((prevState, props) => ({
+        counter: prevState.counter + 1
+      }));
+    }
+  }
+
+  previousExercise() {
+    if(this.state.counter > 0){
+      this.setState((prevState, props) => ({
+        counter: prevState.counter - 1
+      }));
+    }
+  }
+
+  getCurrentExercise() {
+    if(this.state.counter < this.props.exerciseSet.length){
+      return this.props.exerciseSet[this.state.counter]
     }else{
-      this.setState({currentExercise: "Workout Done!"});
+      return "Workout Done!"
     }
   }
 
   render() {
     return (
       <View>
-        <Text style={Styles.header}>
-          {this.state.currentExercise}
+        <Text key="ExerciseText" style={Styles.header}>
+          {this.getCurrentExercise()}
         </Text>
-        <TouchableHighlight onPress={() => this.nextExercise()} style={Styles.button}>
-          <Text style={Styles.buttonText}>
+        <TouchableHighlight key="NextButton" onPress={() => this.nextExercise()} style={Styles.button}>
+          <Text key="NextText" style={Styles.buttonText}>
             Next Exercise
+          </Text>
+        </TouchableHighlight>
+        <TouchableHighlight key="PreviousButton" onPress={() => this.previousExercise()} style={Styles.button}>
+          <Text key="PreviousText" style={Styles.buttonText}>
+            Previous Exercise
           </Text>
         </TouchableHighlight>
       </View>
