@@ -95,13 +95,28 @@ class NameTextInput extends Component {
   }
 }
 
+class SubmitButton extends Component {
+  render() {
+    return (
+      <TouchableHighlight 
+        style={Styles.button} 
+        onPress={this.props.onPress}
+      >
+        <Text style={Styles.buttonText}>
+          {this.props.buttonText}
+        </Text>
+      </TouchableHighlight>
+    );
+  }
+}
+
 
 export default class HomeView extends Component {
- constructor(props) {
-  super(props);
-  this.nextScreen = this.nextScreen.bind(this);
-  this.state = {userName: ''}
- }
+   constructor(props) {
+    super(props);
+    this.nextScreen = this.nextScreen.bind(this);
+    this.state = {userName: ''}
+   }
 
   render() {
     return (
@@ -114,14 +129,10 @@ export default class HomeView extends Component {
             onChange={(event) => this.setState({userName: event.nativeEvent.text})} 
             onSubmitEditing={(event) => this.nextScreen(event.nativeEvent.text)} 
           />
-          <TouchableHighlight 
-            style={Styles.button} 
+          <SubmitButton 
             onPress={() => this.nextScreen(this.state.userName)}
-          >
-            <Text style={Styles.buttonText}>
-              Start my workout
-            </Text>
-          </TouchableHighlight>
+            buttonText={"Start my workout"}
+          />
         </View>
       </BackgroundImage>
     );
