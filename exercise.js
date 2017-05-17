@@ -22,8 +22,12 @@ var getRandomArrayItem = function(array){
 
 export default class ExerciseView extends Component {
 
-  generateExerciseSet() {
-    var exerciseSet = getRandomArrayItem(repCounts) + " " + getRandomArrayItem(exercises);
+  generateExerciseSet(name) {
+    var letters = name.split("");
+    var exerciseSet = []
+    for(i=0; i<letters.length; i++){
+      exerciseSet.push(getRandomArrayItem(repCounts) + " " + getRandomArrayItem(exercises));
+    };
     return exerciseSet;
   }
 
@@ -32,7 +36,7 @@ export default class ExerciseView extends Component {
       <BackgroundImage source={require("./exercise.png")} style={Styles.backgroundImage}>
         <View style={Styles.container}>
           <Text style={Styles.header}>
-            {this.generateExerciseSet()}
+            {this.generateExerciseSet(this.props.userName)}
           </Text>
         </View>
       </BackgroundImage>
