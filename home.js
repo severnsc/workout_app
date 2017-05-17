@@ -84,11 +84,12 @@ class NameTextInput extends Component {
   render() {
     return (
       <TextInput
-      style={Styles.nameInput}
+        style={Styles.nameInput}
         onChangeText={(text) => this.setState({text})}
         value={this.state.text}
         returnKeyType={'go'}
         onSubmitEditing={this.props.onSubmitEditing}
+        onChange={this.props.onChange}
       />
     );
   }
@@ -99,13 +100,7 @@ export default class HomeView extends Component {
  constructor(props) {
   super(props);
   this.nextScreen = this.nextScreen.bind(this);
- }
-
- nextScreen(entry) {
-  this.props.navigator.push({
-    title: "Exercise",
-    component: ExerciseView,
-  });
+  this.state = {userName: ''}
  }
 
   render() {
@@ -115,16 +110,31 @@ export default class HomeView extends Component {
           <Text style={Styles.header}>
             Enter Your Name
           </Text>
-          <NameTextInput onSubmitEditing={this.nextScreen} />
-          <TouchableHighlight style={Styles.button} onPress={(this.nextScreen)}>
+          <NameTextInput 
+            onChange={(event) => this.setState({userName: event.nativeEvent.text})} 
+            onSubmitEditing={(event) => this.nextScreen(event.nativeEvent.text)} 
+          />
+          <TouchableHighlight 
+            style={Styles.button} 
+            onPress={() => this.nextScreen(this.state.userName)}
+          >
             <Text style={Styles.buttonText}>
-              Start My Workout
+              Start my workout
             </Text>
           </TouchableHighlight>
         </View>
       </BackgroundImage>
     );
   }
+
+  nextScreen(userName) {
+    this.props.navigator.push({
+      title: "Exercise",
+      component: ExerciseView,
+      passProps: {userName: userName}
+    });
+  }
+
 };
 
 export {BackgroundImage};

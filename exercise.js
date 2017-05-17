@@ -18,7 +18,7 @@ export default class ExerciseView extends Component {
       <BackgroundImage source={require("./exercise.png")} style={Styles.backgroundImage}>
         <View style={Styles.container}>
           <Text style={Styles.header}>
-            Exercise
+            {this.props.userName}
           </Text>
         </View>
       </BackgroundImage>
