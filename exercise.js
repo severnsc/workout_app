@@ -23,14 +23,18 @@ var getRandomArrayItem = function(array){
 class ExerciseText extends Component {
   constructor(props){
     super(props);
-    this.state = {currentExercise: "tet"};
+    this.state = {
+      currentExercise: this.props.exerciseSet[0],
+      counter: 0,
+    };
   }
 
   nextExercise() {
-    if(this.props.exerciseSet.length > 0){
-      this.setState({currentExercise: this.props.exerciseSet.pop()})
+    if(this.state.counter < this.props.exerciseSet.length){
+      this.setState({counter: this.state.counter + 1});
+      this.setState({currentExercise: this.props.exerciseSet[this.state.counter]});
     }else{
-      this.setState({currentExercise: "Workout Done!"})
+      this.setState({currentExercise: "Workout Done!"});
     }
   }
 
