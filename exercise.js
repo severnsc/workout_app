@@ -53,21 +53,43 @@ class ExerciseText extends Component {
   }
 
   render() {
-    return (
-      <View>
-        <Text key="ExerciseText" style={Styles.header}>
-          {this.getCurrentExercise()}
-        </Text>
+    let exerciseButtons = null;
+    if(this.state.counter === 0){
+      exerciseButtons = 
         <TouchableHighlight key="NextButton" onPress={() => this.nextExercise()} style={Styles.button}>
           <Text key="NextText" style={Styles.buttonText}>
             Next Exercise
           </Text>
         </TouchableHighlight>
+    }else if(this.state.counter < this.props.exerciseSet.length){
+      exerciseButtons = 
+        <View>
+          <TouchableHighlight key="NextButton" onPress={() => this.nextExercise()} style={Styles.button}>
+            <Text key="NextText" style={Styles.buttonText}>
+              Next Exercise
+            </Text>
+          </TouchableHighlight>
+          <TouchableHighlight key="PreviousButton" onPress={() => this.previousExercise()} style={Styles.button}>
+            <Text key="PreviousText" style={Styles.buttonText}>
+              Previous Exercise
+            </Text>
+          </TouchableHighlight>
+        </View>
+    }else{
+      exerciseButtons = 
         <TouchableHighlight key="PreviousButton" onPress={() => this.previousExercise()} style={Styles.button}>
           <Text key="PreviousText" style={Styles.buttonText}>
             Previous Exercise
           </Text>
         </TouchableHighlight>
+    }
+
+    return (
+      <View>
+        <Text key="ExerciseText" style={Styles.header}>
+          {this.getCurrentExercise()}
+        </Text>
+        {exerciseButtons}
       </View>
     );
   }
