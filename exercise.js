@@ -58,6 +58,7 @@ class ExerciseText extends Component {
     this.props.navigator.push({
       title: "Home",
       component: HomeView,
+      passProps: {text: this.props.text}
     });
   }
 
@@ -136,6 +137,7 @@ export default class ExerciseView extends Component {
           <ExerciseText 
             exerciseSet={this.generateExerciseSet(this.props.userName)}
             navigator={this.props.navigator}
+            text={this.props.userName}
           />
         </View>
       </BackgroundImage>

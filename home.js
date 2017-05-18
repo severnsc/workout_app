@@ -78,7 +78,7 @@ class BackgroundImage extends Component {
 class NameTextInput extends Component {
   constructor(props) {
     super(props);
-    this.state = {text: ""};
+    this.state = {text: this.props.text};
   }
 
   render() {
@@ -90,6 +90,7 @@ class NameTextInput extends Component {
         returnKeyType={'go'}
         onSubmitEditing={this.props.onSubmitEditing}
         onChange={this.props.onChange}
+        autoFocus={true}
       />
     );
   }
@@ -112,30 +113,10 @@ class SubmitButton extends Component {
 
 
 export default class HomeView extends Component {
-   constructor(props) {
+  constructor(props) {
     super(props);
     this.nextScreen = this.nextScreen.bind(this);
-    this.state = {userName: ''}
-   }
-
-  render() {
-    return (
-      <BackgroundImage source={require('./running_woman.png')}>
-        <View style={Styles.container}>
-          <Text style={Styles.header}>
-            Enter Your Name
-          </Text>
-          <NameTextInput 
-            onChange={(event) => this.setState({userName: event.nativeEvent.text})} 
-            onSubmitEditing={(event) => this.nextScreen(event.nativeEvent.text)} 
-          />
-          <SubmitButton 
-            onPress={() => this.nextScreen(this.state.userName)}
-            buttonText={"Start my workout"}
-          />
-        </View>
-      </BackgroundImage>
-    );
+    this.state = {userName: this.props.text};
   }
 
   nextScreen(userName) {
@@ -144,6 +125,28 @@ export default class HomeView extends Component {
       component: ExerciseView,
       passProps: {userName: userName}
     });
+  }
+
+  render() {
+
+    return (
+      <BackgroundImage source={require('./running_woman.png')}>
+        <View style={Styles.container}>
+          <Text style={Styles.header}>
+            Enter Your Name
+          </Text>
+          <NameTextInput 
+            onChange={(event) => this.setState({userName: event.nativeEvent.text})} 
+            onSubmitEditing={(event) => this.nextScreen(event.nativeEvent.text)}
+            text={this.props.text}
+          />
+          <SubmitButton 
+            onPress={() => this.nextScreen(this.state.userName)}
+            buttonText={"Start my workout"}
+          />
+        </View>
+      </BackgroundImage>
+    );
   }
 
 };
