@@ -63,6 +63,7 @@ class ExerciseText extends Component {
       this.setState((prevState, props) => ({
         counter: prevState.counter - 1
       }));
+      this.animate();
     }
   }
 
