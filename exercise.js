@@ -30,7 +30,7 @@ class ExerciseText extends Component {
     this.state = {
       counter: 0,
     };
-    this.opacityValue = new Animated.Value(0);
+    this.animatedValue = new Animated.Value(0);
   }
 
   componentDidMount() {
@@ -38,12 +38,12 @@ class ExerciseText extends Component {
   }
 
   animate() {
-    this.opacityValue.setValue(0);
+    this.animatedValue.setValue(0);
     Animated.timing(
-      this.opacityValue,
+      this.animatedValue,
       {
         toValue: 1,
-        duration: 1000,
+        duration: 500,
         easing: Easing.linear,
       }
     ).start()
@@ -84,7 +84,7 @@ class ExerciseText extends Component {
   }
 
   render() {
-    const opacity = this.opacityValue.interpolate({
+    const opacity = this.animatedValue.interpolate({
       inputRange: [0, 1],
       outputRange: [0, 1],
     })
@@ -135,19 +135,12 @@ class ExerciseText extends Component {
     }
 
     return (
-      <View>
-        <Animated.Text key="ExerciseText" style={{
-          opacity,
-          fontSize: 48,
-          textAlign: 'center',
-          backgroundColor: 'rgba(0,0,0,0)',
-          fontWeight: 'bold',
-          fontFamily: 'Helvetica',
-        }}>
+      <Animated.View style={{opacity}}>
+        <Text key="ExerciseText" style={Styles.header}>
           {this.getCurrentExercise()}
-        </Animated.Text>
+        </Text>
         {exerciseButtons}
-      </View>
+      </Animated.View>
     );
   }
 }
