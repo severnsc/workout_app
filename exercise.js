@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {
+  Animated,
   AppRegistry,
+  Easing,
   Image,
   StyleSheet,
   Text,
@@ -28,6 +30,23 @@ class ExerciseText extends Component {
     this.state = {
       counter: 0,
     };
+    this.opacityValue = new Animated.Value(0);
+  }
+
+  componentDidMount() {
+    this.animate();
+  }
+
+  animate() {
+    this.opacityValue.setValue(0);
+    Animated.timing(
+      this.opacityValue,
+      {
+        toValue: 1,
+        duration: 1000,
+        easing: Easing.linear,
+      }
+    ).start()
   }
 
   nextExercise() {
@@ -35,6 +54,7 @@ class ExerciseText extends Component {
       this.setState((prevState, props) => ({
         counter: prevState.counter + 1
       }));
+      this.animate();
     }
   }
 
@@ -63,6 +83,11 @@ class ExerciseText extends Component {
   }
 
   render() {
+    const opacity = this.opacityValue.interpolate({
+      inputRange: [0, 1],
+      outputRange: [0, 1],
+    })
+
     let exerciseButtons = null;
     if(this.state.counter === 0){
       exerciseButtons = 
@@ -110,9 +135,16 @@ class ExerciseText extends Component {
 
     return (
       <View>
-        <Text key="ExerciseText" style={Styles.header}>
+        <Animated.Text key="ExerciseText" style={{
+          opacity,
+          fontSize: 48,
+          textAlign: 'center',
+          backgroundColor: 'rgba(0,0,0,0)',
+          fontWeight: 'bold',
+          fontFamily: 'Helvetica',
+        }}>
           {this.getCurrentExercise()}
-        </Text>
+        </Animated.Text>
         {exerciseButtons}
       </View>
     );
