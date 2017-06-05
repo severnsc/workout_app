@@ -36,14 +36,23 @@ export const Styles = StyleSheet.create({
     fontWeight: 'bold',
     fontFamily: 'Helvetica',
   },
+  appHeader: {
+    fontSize: 48,
+    textAlign: 'center',
+    backgroundColor: 'rgba(0,0,0,0)',
+    fontWeight: 'bold',
+    fontFamily: 'Helvetica',
+    color: "white",
+    marginTop: 100,
+    marginBottom:-100,
+  },
   nameInputView: {
     width:300,
     maxHeight: 48,
     marginLeft: 15,
     marginRight: 15,
-    borderBottomWidth: 1,
+    borderBottomWidth: 3,
     borderBottomColor: "white",
-    paddingBottom: 5,
     flexDirection: 'row',
     backgroundColor: 'rgba(0,0,0,0)',
   },
@@ -52,15 +61,17 @@ export const Styles = StyleSheet.create({
     fontSize: 32,
     width:300,
     marginLeft: 5,
+    fontFamily: "Avenir-Medium",
   },
   nameText: {
     fontSize: 32,
     color: "white",
+    fontFamily: "Avenir-Medium",
   },
   button: {
     width:300,
     flex: 1,
-    maxHeight: 36,
+    maxHeight: 50,
     backgroundColor: "rgba(117,205,230,1)",
     borderColor: "#0f0f0f",
     borderWidth: 1,
@@ -72,8 +83,9 @@ export const Styles = StyleSheet.create({
     color: '#ffffff',
     fontWeight: 'bold',
     justifyContent: 'center',
-    margin: 10,
     textAlign: 'center',
+    fontSize: 24,
+    fontFamily: 'Helvetica'
   }
 });
 
@@ -143,6 +155,11 @@ export default class HomeView extends Component {
 
     return (
       <BackgroundImage source={require('./exercise.png')}>
+        <View>
+          <Text style={Styles.appHeader}>
+            Workout App
+          </Text>
+        </View>
         <View style={Styles.container}>
           <View style={Styles.nameInputView}>
             <Text style={Styles.nameText}>
