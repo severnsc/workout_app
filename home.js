@@ -51,7 +51,7 @@ export const Styles = StyleSheet.create({
     maxHeight: 48,
     marginLeft: 15,
     marginRight: 15,
-    borderBottomWidth: 3,
+    borderBottomWidth: 2,
     borderBottomColor: "white",
     flexDirection: 'row',
     backgroundColor: 'rgba(0,0,0,0)',
