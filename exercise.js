@@ -26,11 +26,20 @@ const exercises = [
    difficulty: 2,
    timed: true},
   {name: "Pushups",
-   difficulty: 1,
+   difficulty: 2,
    timed: false},
   {name: "Situps",
    difficulty: 1,
-   timed: false}
+   timed: false},
+  {name: "Jumping Jacks",
+   difficulty: 1,
+   timed: false},
+  {name: "Plank",
+   difficulty: 3,
+   timed: true},
+   {name: "Lunges",
+    difficulty:2,
+    timed: false}
 ];
 
 const repCounts = [10, 15, 20, 25, 30];
@@ -179,7 +188,18 @@ export default class ExerciseView extends Component {
     const letters = name.split("");
     var exerciseSet = []
     for(i=0; i<letters.length; i++){
-      const exercise = getRandomArrayItem(exercises);
+      const letter = letters[i].toUpperCase();
+      let exercise = null;
+      if(alphabet[letter] <= 1.5){
+        const hardExercises = exercises.filter((e) => e.difficulty === 3);
+        exercise = getRandomArrayItem(hardExercises);
+      }else if(alphabet[letter] <= 6.3){
+        const mediumExercises = exercises.filter((e) => e.difficulty === 2);
+        exercise = getRandomArrayItem(mediumExercises);
+      }else{
+        const easyExercises = exercises.filter((e) => e.difficulty === 1);
+        exercise = getRandomArrayItem(easyExercises);
+      }
       if(exercise.timed){
         exerciseSet.push(getRandomArrayItem(times) + " " + exercise.name);
       }else{
