@@ -42,6 +42,12 @@ const exercises = [
     timed: false}
 ];
 
+const easyExercises = exercises.filter((e) => e.difficulty === 1);
+
+const mediumExercises = exercises.filter((e) => e.difficulty === 2);
+
+const hardExercises = exercises.filter((e) => e.difficulty === 3);
+
 const repCounts = [10, 15, 20, 25, 30];
 
 const times = ["1 minute", "2 minute"];
@@ -51,6 +57,25 @@ const alphabet = {A: 8.2, B: 1.5, C: 2.8, D: 4.3, E: 12.7, F: 2.2, G: 2.0, H: 6.
 const getRandomArrayItem = function(array){
   const rand = array[Math.floor(Math.random() * array.length)];
   return rand;
+}
+
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
 }
 
 class ExerciseText extends Component {
@@ -187,25 +212,46 @@ export default class ExerciseView extends Component {
   generateExerciseSet(name) {
     const letters = name.split("");
     var exerciseSet = []
+    var numberOfEasyExercises = numberOfMediumExercises = numberOfHardExercises = 0;
     for(i=0; i<letters.length; i++){
-      const letter = letters[i].toUpperCase();
-      let exercise = null;
-      if(alphabet[letter] <= 1.5){
-        const hardExercises = exercises.filter((e) => e.difficulty === 3);
-        exercise = getRandomArrayItem(hardExercises);
-      }else if(alphabet[letter] <= 6.3){
-        const mediumExercises = exercises.filter((e) => e.difficulty === 2);
-        exercise = getRandomArrayItem(mediumExercises);
+      if(letters.length % 2 === 0){
+        numberOfEasyExercises = Math.ceil(letters.length/4);
+        numberOfMediumExercises = letters.length/2;
+        numberOfHardExercises = Math.floor(letters.length/4);
+        
       }else{
-        const easyExercises = exercises.filter((e) => e.difficulty === 1);
-        exercise = getRandomArrayItem(easyExercises);
-      }
-      if(exercise.timed){
-        exerciseSet.push(getRandomArrayItem(times) + " " + exercise.name);
-      }else{
-        exerciseSet.push(getRandomArrayItem(repCounts) + " " + exercise.name);
+        numberOfEasyExercises = numberOfHardExercises = Math.floor(letters.length/4);
+        numberOfMediumExercises = Math.ceil(letters.length/2);
+        while(numberOfEasyExercises + numberOfMediumExercises + numberOfHardExercises < letters.length){
+          numberOfHardExercises += 1
+        }
       }
     };
+    const exerciseGroups = [
+      {
+        count: numberOfEasyExercises,
+        set: easyExercises
+      },
+      {
+        count: numberOfMediumExercises,
+        set: mediumExercises
+      },
+      {
+        count: numberOfHardExercises,
+        set: hardExercises
+      }
+    ];
+    exerciseGroups.forEach((exerciseGroup) => {
+      for(i=0; i<exerciseGroup.count; i++){
+        const exercise = getRandomArrayItem(exerciseGroup.set);
+        if(exercise.timed){
+          exerciseSet.push(getRandomArrayItem(times) + " " + exercise.name);
+        }else{
+          exerciseSet.push(getRandomArrayItem(repCounts) + " " + exercise.name);
+        }
+      }
+    });
+    exerciseSet = shuffle(exerciseSet);
     return exerciseSet;
   }
 
