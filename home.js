@@ -42,6 +42,7 @@ export const Styles = StyleSheet.create({
     marginLeft: 15,
     marginRight: 15,
     borderBottomWidth: 1,
+    borderBottomColor: "white",
     flexDirection: 'row',
     backgroundColor: 'rgba(0,0,0,0)',
   },
@@ -49,6 +50,12 @@ export const Styles = StyleSheet.create({
     color: "white",
     fontSize: 16,
     width:300,
+    marginLeft: 5,
+  },
+  nameText: {
+    marginTop:2,
+    fontSize: 16,
+    color: "white",
   },
   button: {
     flex: 1,
@@ -93,8 +100,6 @@ class NameTextInput extends Component {
         onSubmitEditing={this.props.onSubmitEditing}
         onChange={this.props.onChange}
         autoFocus={true}
-        multiline={true}
-        numberOfLines={1}
         style={Styles.nameInput}
       />
     );
