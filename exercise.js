@@ -60,7 +60,7 @@ const getRandomArrayItem = function(array){
 }
 
 function shuffle(array) {
-  var currentIndex = array.length, temporaryValue, randomIndex;
+  let currentIndex = array.length, temporaryValue, randomIndex;
 
   // While there remain elements to shuffle...
   while (0 !== currentIndex) {
@@ -211,8 +211,8 @@ export default class ExerciseView extends Component {
 
   generateExerciseSet(name) {
     const letters = name.split("");
-    var exerciseSet = []
-    var numberOfEasyExercises = numberOfMediumExercises = numberOfHardExercises = 0;
+    let exerciseSet = []
+    let numberOfEasyExercises = numberOfMediumExercises = numberOfHardExercises = 0;
     for(i=0; i<letters.length; i++){
       if(letters.length % 2 === 0){
         numberOfEasyExercises = Math.ceil(letters.length/4);
