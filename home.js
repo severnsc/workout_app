@@ -36,16 +36,19 @@ export const Styles = StyleSheet.create({
     fontWeight: 'bold',
     fontFamily: 'Helvetica',
   },
-  nameInput: {
-    flex: 1,
+  nameInputView: {
+    width:300,
     maxHeight: 24,
-    borderColor: '#0f0f0f',
-    borderWidth: 0.5,
-    textAlign: 'center',
-    borderRadius: 5,
-    backgroundColor: '#ffffff',
     marginLeft: 15,
     marginRight: 15,
+    borderBottomWidth: 1,
+    flexDirection: 'row',
+    backgroundColor: 'rgba(0,0,0,0)',
+  },
+  nameInput: {
+    color: "white",
+    fontSize: 16,
+    width:300,
   },
   button: {
     flex: 1,
@@ -84,13 +87,15 @@ class NameTextInput extends Component {
   render() {
     return (
       <TextInput
-        style={Styles.nameInput}
         onChangeText={(text) => this.setState({text})}
         value={this.state.text}
         returnKeyType={'go'}
         onSubmitEditing={this.props.onSubmitEditing}
         onChange={this.props.onChange}
         autoFocus={true}
+        multiline={true}
+        numberOfLines={1}
+        style={Styles.nameInput}
       />
     );
   }
@@ -132,14 +137,16 @@ export default class HomeView extends Component {
     return (
       <BackgroundImage source={require('./running_woman.png')}>
         <View style={Styles.container}>
-          <Text style={Styles.header}>
-            Enter Your Name
-          </Text>
-          <NameTextInput 
-            onChange={(event) => this.setState({userName: event.nativeEvent.text})} 
-            onSubmitEditing={(event) => this.nextScreen(event.nativeEvent.text)}
-            text={this.props.text}
-          />
+          <View style={Styles.nameInputView}>
+            <Text style={Styles.nameText}>
+              Name:
+            </Text>
+            <NameTextInput 
+              onChange={(event) => this.setState({userName: event.nativeEvent.text})} 
+              onSubmitEditing={(event) => this.nextScreen(event.nativeEvent.text)}
+              text={this.props.text}
+            />
+          </View>
           <SubmitButton 
             onPress={() => this.nextScreen(this.state.userName)}
             buttonText={"Start my workout"}
