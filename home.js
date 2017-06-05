@@ -29,13 +29,6 @@ export const Styles = StyleSheet.create({
     height: null,
     resizeMode: "cover",
   },
-  header: {
-    fontSize: 48,
-    textAlign: 'center',
-    backgroundColor: 'rgba(0,0,0,0)',
-    fontWeight: 'bold',
-    fontFamily: 'Helvetica',
-  },
   appHeader: {
     fontSize: 48,
     textAlign: 'center',
@@ -70,6 +63,16 @@ export const Styles = StyleSheet.create({
   },
   button: {
     width:300,
+    flex: 1,
+    maxHeight: 50,
+    backgroundColor: "rgba(117,205,230,1)",
+    borderColor: "#0f0f0f",
+    borderWidth: 1,
+    borderRadius: 8,
+    marginTop: 10,
+    justifyContent: "center",
+  },
+  workoutButton: {
     flex: 1,
     maxHeight: 50,
     backgroundColor: "rgba(117,205,230,1)",

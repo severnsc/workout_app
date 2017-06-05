@@ -93,12 +93,12 @@ class ExerciseText extends Component {
     if(this.state.counter === 0){
       exerciseButtons = 
         <View>
-          <TouchableHighlight key="NextButton" onPress={() => this.nextExercise()} style={Styles.button}>
+          <TouchableHighlight key="NextButton" onPress={() => this.nextExercise()} style={Styles.workoutButton}>
             <Text key="NextText" style={Styles.buttonText}>
               Next Exercise
             </Text>
           </TouchableHighlight>
-          <TouchableHighlight onPress={() => this.returnHome()} style={Styles.button}>
+          <TouchableHighlight onPress={() => this.returnHome()} style={Styles.workoutButton}>
             <Text style={Styles.buttonText}>
               Return Home
             </Text>
@@ -107,12 +107,12 @@ class ExerciseText extends Component {
     }else if(this.state.counter < this.props.exerciseSet.length){
       exerciseButtons = 
         <View>
-          <TouchableHighlight key="NextButton" onPress={() => this.nextExercise()} style={Styles.button}>
+          <TouchableHighlight key="NextButton" onPress={() => this.nextExercise()} style={Styles.workoutButton}>
             <Text key="NextText" style={Styles.buttonText}>
               Next Exercise
             </Text>
           </TouchableHighlight>
-          <TouchableHighlight key="PreviousButton" onPress={() => this.previousExercise()} style={Styles.button}>
+          <TouchableHighlight key="PreviousButton" onPress={() => this.previousExercise()} style={Styles.workoutButton}>
             <Text key="PreviousText" style={Styles.buttonText}>
               Previous Exercise
             </Text>
@@ -121,12 +121,12 @@ class ExerciseText extends Component {
     }else{
       exerciseButtons = 
         <View>
-          <TouchableHighlight onPress={() => this.returnHome()} style={Styles.button}>
+          <TouchableHighlight onPress={() => this.returnHome()} style={Styles.workoutButton}>
             <Text style={Styles.buttonText}>
               Return Home
             </Text>
           </TouchableHighlight>
-          <TouchableHighlight key="PreviousButton" onPress={() => this.previousExercise()} style={Styles.button}>
+          <TouchableHighlight key="PreviousButton" onPress={() => this.previousExercise()} style={Styles.workoutButton}>
             <Text key="PreviousText" style={Styles.buttonText}>
               Previous Exercise
             </Text>
@@ -135,12 +135,20 @@ class ExerciseText extends Component {
     }
 
     return (
-      <Animated.View style={{opacity}}>
-        <Text key="ExerciseText" style={Styles.header}>
+      <View>
+        <Animated.Text key="ExerciseText" style={{
+          opacity,
+          fontSize: 48,
+          textAlign: 'center',
+          backgroundColor: 'rgba(0,0,0,0)',
+          fontWeight: 'bold',
+          fontFamily: 'Helvetica',
+          width:300,
+        }}>
           {this.getCurrentExercise()}
-        </Text>
+        </Animated.Text>
         {exerciseButtons}
-      </Animated.View>
+      </View>
     );
   }
 }
