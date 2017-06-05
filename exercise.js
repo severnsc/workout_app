@@ -17,15 +17,20 @@ import HomeView from './home';
 
 const exercises = [
   {name: "Burpees",
-   difficulty: 3},
+   difficulty: 3,
+   timed: false},
   {name: "Squats",
-   difficulty: 1},
+   difficulty: 1,
+   timed: false},
   {name: "Wall Squat",
-   difficulty: 2},
+   difficulty: 2,
+   timed: true},
   {name: "Pushups",
-   difficulty: 1},
+   difficulty: 1,
+   timed: false},
   {name: "Situps",
-   difficulty: 1}
+   difficulty: 1,
+   timed: false}
 ];
 
 const repCounts = [10, 15, 20, 25, 30];
@@ -174,7 +179,12 @@ export default class ExerciseView extends Component {
     const letters = name.split("");
     var exerciseSet = []
     for(i=0; i<letters.length; i++){
-      exerciseSet.push(getRandomArrayItem(repCounts) + " " + getRandomArrayItem(exercises).name);
+      const exercise = getRandomArrayItem(exercises);
+      if(exercise.timed){
+        exerciseSet.push(getRandomArrayItem(times) + " " + exercise.name);
+      }else{
+        exerciseSet.push(getRandomArrayItem(repCounts) + " " + exercise.name);
+      }
     };
     return exerciseSet;
   }
