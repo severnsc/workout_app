@@ -38,26 +38,27 @@ export const Styles = StyleSheet.create({
   },
   nameInputView: {
     width:300,
-    maxHeight: 24,
+    maxHeight: 48,
     marginLeft: 15,
     marginRight: 15,
     borderBottomWidth: 1,
     borderBottomColor: "white",
+    paddingBottom: 5,
     flexDirection: 'row',
     backgroundColor: 'rgba(0,0,0,0)',
   },
   nameInput: {
     color: "white",
-    fontSize: 16,
+    fontSize: 32,
     width:300,
     marginLeft: 5,
   },
   nameText: {
-    marginTop:2,
-    fontSize: 16,
+    fontSize: 32,
     color: "white",
   },
   button: {
+    width:300,
     flex: 1,
     maxHeight: 36,
     backgroundColor: "rgba(117,205,230,1)",
@@ -72,6 +73,7 @@ export const Styles = StyleSheet.create({
     fontWeight: 'bold',
     justifyContent: 'center',
     margin: 10,
+    textAlign: 'center',
   }
 });
 
@@ -140,7 +142,7 @@ export default class HomeView extends Component {
   render() {
 
     return (
-      <BackgroundImage source={require('./running_woman.png')}>
+      <BackgroundImage source={require('./exercise.png')}>
         <View style={Styles.container}>
           <View style={Styles.nameInputView}>
             <Text style={Styles.nameText}>
