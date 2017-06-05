@@ -15,12 +15,14 @@ import {BackgroundImage, Styles} from './home';
 
 import HomeView from './home';
 
-var exercises = ["Burpees", "Squats", "Wall Squat", "Pushups", "Situps"];
+const exercises = ["Burpees", "Squats", "Wall Squat", "Pushups", "Situps"];
 
-var repCounts = [10, 15, 20, 25, 30];
+const repCounts = [10, 15, 20, 25, 30];
 
-var getRandomArrayItem = function(array){
-  var rand = array[Math.floor(Math.random() * array.length)];
+const alphabet = {A: 8.2, B: 1.5, C: 2.8, D: 4.3, E: 12.7, F: 2.2, G: 2.0, H: 6.1, I: 7.0, J: 0.2, K: 0.8, L: 4.0, M: 2.4, N: 6.7, O: 7.5, P: 1.9, Q: 0.1, R: 6.0, S: 6.3, T: 9.1, U: 2.8, V: 1.0, W: 2.4, X: 0.2, Y: 2.0, Z: 0.1};
+
+const getRandomArrayItem = function(array){
+  const rand = array[Math.floor(Math.random() * array.length)];
   return rand;
 }
 
@@ -156,7 +158,7 @@ class ExerciseText extends Component {
 export default class ExerciseView extends Component {
 
   generateExerciseSet(name) {
-    var letters = name.split("");
+    const letters = name.split("");
     var exerciseSet = []
     for(i=0; i<letters.length; i++){
       exerciseSet.push(getRandomArrayItem(repCounts) + " " + getRandomArrayItem(exercises));
