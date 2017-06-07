@@ -16,30 +16,61 @@ import {BackgroundImage, Styles} from './home';
 import HomeView from './home';
 
 const exercises = [
-  {name: "Burpees",
-   difficulty: 3,
-   timed: false},
-  {name: "Squats",
-   difficulty: 1,
-   timed: false},
-  {name: "Wall Squat",
-   difficulty: 2,
-   timed: true},
-  {name: "Pushups",
-   difficulty: 2,
-   timed: false},
-  {name: "Situps",
-   difficulty: 1,
-   timed: false},
-  {name: "Jumping Jacks",
-   difficulty: 1,
-   timed: false},
-  {name: "Plank",
-   difficulty: 3,
-   timed: true},
-   {name: "Lunges",
+  {
+    name: "Burpees",
+    difficulty: 3,
+    timed: false
+  },
+  {
+    name: "Squats",
+    difficulty: 1,
+    timed: false
+  },
+  {
+    name: "Wall Squat",
+    difficulty: 2,
+    timed: true
+  },
+  {
+    name: "Pushups",
+    difficulty: 2,
+    timed: false
+  },
+  {
+    name: "Situps",
+    difficulty: 1,
+    timed: false
+  },
+  {
+    name: "Jumping Jacks",
+    difficulty: 1,
+    timed: false
+  },
+  {
+    name: "Plank",
+    difficulty: 3,
+    timed: true
+  },
+  {
+    name: "Lunges",
     difficulty:2,
-    timed: false}
+    timed: false
+  },
+  {
+    name: "Frog jumps",
+    difficulty: 3,
+    timed: false
+  },
+  {
+    name: "Superman",
+    difficulty: 3,
+    timed: true
+  },
+  {
+    name: "Dips",
+    difficulty: 1,
+    timed: false
+  }
 ];
 
 const easyExercises = exercises.filter((e) => e.difficulty === 1);
