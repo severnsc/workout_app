@@ -39,6 +39,17 @@ export const Styles = StyleSheet.create({
     marginTop: 100,
     marginBottom:-100,
   },
+  nameHeader:{
+    fontSize: 48,
+    textAlign: 'center',
+    backgroundColor: 'rgba(0,0,0,0)',
+    fontWeight: 'bold',
+    fontFamily:'Helvetica',
+    color: 'white'
+  },
+  activeLetter:{
+    color:"rgba(117,205,230,1)",
+  },
   nameInputView: {
     width:300,
     maxHeight: 48,

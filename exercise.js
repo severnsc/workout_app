@@ -219,8 +219,15 @@ class ExerciseText extends Component {
         </View>
     }
 
+    const name = this.props.text.split("").map((letter, i) => {
+      return <Text key={i} style={this.state.counter === i && Styles.activeLetter}>{letter}</Text>
+    })
+
     return (
       <View>
+        <Text style={Styles.nameHeader}>
+          {name}
+        </Text>
         <Animated.Text key="ExerciseText" style={{
           opacity,
           fontSize: 48,
