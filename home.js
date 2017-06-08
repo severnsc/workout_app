@@ -44,10 +44,14 @@ export const Styles = StyleSheet.create({
     maxHeight: 48,
     marginLeft: 15,
     marginRight: 15,
+    bottom:15,
     borderBottomWidth: 2,
     borderBottomColor: "white",
     flexDirection: 'row',
     backgroundColor: 'rgba(0,0,0,0)',
+  },
+  nameInputSubmit:{
+    bottom:15,
   },
   nameInput: {
     color: "white",
@@ -174,10 +178,12 @@ export default class HomeView extends Component {
               text={this.props.text}
             />
           </View>
-          <SubmitButton 
-            onPress={() => this.nextScreen(this.state.userName)}
-            buttonText={"Start my workout"}
-          />
+          <View style={Styles.nameInputSubmit}>
+            <SubmitButton 
+              onPress={() => this.nextScreen(this.state.userName)}
+              buttonText={"Start my workout"}
+            />
+          </View>
         </View>
       </BackgroundImage>
     );
