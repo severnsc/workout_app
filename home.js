@@ -133,6 +133,7 @@ class NameTextInput extends Component {
         onChange={this.props.onChange}
         autoFocus={true}
         style={Styles.nameInput}
+        selectionColor={"rgba(117,205,230,1)"}
       />
     );
   }
