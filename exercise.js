@@ -173,8 +173,9 @@ class Timer extends Component {
     }
 
     return(
-      <View>
-        <Text>
+      <View style={Styles.timerView}>
+        {this.props.children}
+        <Text style={Styles.header}>
           {this.state.minutes} : {this.state.seconds}
         </Text>
         <TouchableHighlight 
@@ -235,7 +236,16 @@ class ExerciseText extends Component {
 
   getCurrentExercise() {
     if(this.state.counter < this.props.exerciseSet.length){
-      return this.props.exerciseSet[this.state.counter];
+      const currentExercise = this.props.exerciseSet[this.state.counter];
+      if(currentExercise.timed){
+        return(
+          <Timer time={getRandomArrayItem(times)}>
+            <Text style={Styles.header}>{currentExercise.name}</Text>
+          </Timer>
+        )
+      }else{
+        return getRandomArrayItem(repCounts) + " " + currentExercise.name
+      }
     }else{
       return "Workout Done!"
     }
@@ -309,9 +319,11 @@ class ExerciseText extends Component {
 
     return (
       <View>
-        <Text style={Styles.nameHeader}>
-          {name}
-        </Text>
+        <View style={Styles.nameHeader}>
+          <Text style={Styles.header}>
+            {name}
+          </Text>
+        </View>
         <Animated.Text key="ExerciseText" style={{
           opacity,
           fontSize: 48,
@@ -365,13 +377,7 @@ export default class ExerciseView extends Component {
     ];
     exerciseGroups.forEach((exerciseGroup) => {
       for(i=0; i<exerciseGroup.count; i++){
-        const exercise = getRandomArrayItem(exerciseGroup.set);
-        if(exercise.timed){
-          const time = getRandomArrayItem(times)/60000 + " minute";
-          exerciseSet.push(time + " " + exercise.name);
-        }else{
-          exerciseSet.push(getRandomArrayItem(repCounts) + " " + exercise.name);
-        }
+        exerciseSet.push(getRandomArrayItem(exerciseGroup.set));
       }
     });
     exerciseSet = shuffle(exerciseSet);
@@ -387,7 +393,6 @@ export default class ExerciseView extends Component {
             navigator={this.props.navigator}
             text={this.props.userName}
           />
-          <Timer time={2000} />
         </View>
       </BackgroundImage>
     );
