@@ -118,40 +118,63 @@ class Timer extends Component {
       time: this.props.time,
       minutes: 0,
       seconds: 0,
+      intervalID: null,
     }
     this.calculateTime = this.calculateTime.bind(this)
   }
 
   startTimer(){
-    setInterval(this.calculateTime, 1000);
+    this.setState({intervalID: setInterval(this.calculateTime, 1000)});
+  }
+
+  stopTimer(){
+    clearInterval(this.state.intervalID)
+  }
+
+  timerEnd(){
+    if(this.state.time === 0){
+      clearInterval(this.state.intervalID)
+    }
   }
 
   calculateTime(){
     console.log(this.state.time);
     const minutes = Math.floor(this.state.time / 60000);
-    const seconds = (this.state.time % 60000) / 1000;
+    let seconds = (this.state.time % 60000) / 1000;
+    if(seconds < 10){
+      seconds = "0" + seconds;
+    }
     this.setState({
       minutes: minutes,
       seconds: seconds,
       time: this.state.time - 1000,
-    })
+    }, this.timerEnd())
   }
 
-  componentWillMount(){
+  componentDidMount(){
     this.calculateTime();
   }
 
   render() {
+    
+    let timerButtonText = "Start"
+    
+    if(this.state.intervalID){
+      timerButtonText = "Stop"
+    }
+
     return(
       <View>
         <Text>
           {this.state.minutes} : {this.state.seconds}
         </Text>
         <TouchableHighlight 
-          style={Styles.button} 
+          style={this.state.intervalID ? Styles.stopTimer : Styles.button} 
           onPress={() => this.startTimer()}
         >
-          <Text>Start</Text>
+          <Text style={Styles.buttonText}>
+            {timerButtonText}
+          </Text>
         </TouchableHighlight>
       </View>
     )
@@ -355,7 +378,7 @@ export default class ExerciseView extends Component {
             navigator={this.props.navigator}
             text={this.props.userName}
           />
-          <Timer time={120000} />
+          <Timer time={2000} />
         </View>
       </BackgroundImage>
     );
