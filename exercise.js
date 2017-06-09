@@ -128,7 +128,16 @@ class Timer extends Component {
   }
 
   stopTimer(){
-    clearInterval(this.state.intervalID)
+    clearInterval(this.state.intervalID);
+    this.setState({intervalID: null});
+  }
+
+  toggleTimer(){
+    if(this.state.intervalID){
+      this.stopTimer()
+    }else{
+      this.startTimer()
+    }
   }
 
   timerEnd(){
@@ -170,7 +179,7 @@ class Timer extends Component {
         </Text>
         <TouchableHighlight 
           style={this.state.intervalID ? Styles.stopTimer : Styles.button} 
-          onPress={() => this.startTimer()}
+          onPress={() => this.toggleTimer()}
         >
           <Text style={Styles.buttonText}>
             {timerButtonText}
