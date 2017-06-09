@@ -219,9 +219,12 @@ class ExerciseText extends Component {
         </View>
     }
 
-    const name = this.props.text.split("").map((letter, i) => {
-      return <Text key={i} style={this.state.counter === i && Styles.activeLetter}>{letter}</Text>
-    })
+    let name = null;
+    if(this.state.counter < this.props.text.length){
+      name = this.props.text.split("").map((letter, i) => {
+        return <Text key={i} style={this.state.counter === i && Styles.activeLetter}>{letter}</Text>
+      })
+    }
 
     return (
       <View>
