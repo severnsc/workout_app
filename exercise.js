@@ -137,8 +137,8 @@ class Timer extends Component {
     })
   }
 
-  componentDidMount(){
-    this.calculateTime;
+  componentWillMount(){
+    this.calculateTime();
   }
 
   render() {
