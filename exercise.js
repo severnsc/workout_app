@@ -175,7 +175,7 @@ class Timer extends Component {
     return(
       <View style={Styles.timerView}>
         {this.props.children}
-        <Text style={Styles.header}>
+        <Text style={Styles.exerciseText}>
           {this.state.minutes} : {this.state.seconds}
         </Text>
         <TouchableHighlight 
@@ -240,7 +240,7 @@ class ExerciseText extends Component {
       if(currentExercise.timed){
         return(
           <Timer time={getRandomArrayItem(times)}>
-            <Text style={Styles.header}>{currentExercise.name}</Text>
+            <Text style={Styles.exerciseText}>{currentExercise.name}</Text>
           </Timer>
         )
       }else{
