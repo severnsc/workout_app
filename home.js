@@ -39,7 +39,7 @@ export const Styles = StyleSheet.create({
     marginTop: 100,
     marginBottom:-100,
   },
-  nameHeader:{
+  header:{
     fontSize: 48,
     textAlign: 'center',
     backgroundColor: 'rgba(0,0,0,0)',
@@ -115,7 +115,14 @@ export const Styles = StyleSheet.create({
     borderRadius: 8,
     marginTop: 10,
     justifyContent: "center",
-  }
+  },
+  timerView: {
+    width: 300,
+    height: 200,
+  },
+  nameHeader: {
+    marginBottom:15,
+  },
 });
 
 class BackgroundImage extends Component {
