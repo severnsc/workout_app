@@ -123,6 +123,14 @@ export const Styles = StyleSheet.create({
   nameHeader: {
     marginBottom:15,
   },
+  exerciseText: {
+    fontSize: 48,
+    textAlign: 'center',
+    backgroundColor: 'rgba(0,0,0,0)',
+    fontWeight: 'bold',
+    fontFamily: 'Helvetica',
+    width:300,
+  }
 });
 
 class BackgroundImage extends Component {
