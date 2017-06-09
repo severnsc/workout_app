@@ -115,18 +115,30 @@ class Timer extends Component {
   constructor(props){
     super(props);
     this.state = {
+      time: this.props.time,
       minutes: 0,
       seconds: 0,
     }
+    this.calculateTime = this.calculateTime.bind(this)
+  }
+
+  startTimer(){
+    setInterval(this.calculateTime, 1000);
   }
 
   calculateTime(){
-    const minutes = Math.floor(this.props.time / 60000);
-    const seconds = (this.props.time % 60000) / 1000;
+    console.log(this.state.time);
+    const minutes = Math.floor(this.state.time / 60000);
+    const seconds = (this.state.time % 60000) / 1000;
     this.setState({
       minutes: minutes,
       seconds: seconds,
+      time: this.state.time - 1000,
     })
+  }
+
+  componentDidMount(){
+    this.calculateTime;
   }
 
   render() {
@@ -137,9 +149,9 @@ class Timer extends Component {
         </Text>
         <TouchableHighlight 
           style={Styles.button} 
-          onPress={() => this.calculateTime()}
+          onPress={() => this.startTimer()}
         >
-          Start
+          <Text>Start</Text>
         </TouchableHighlight>
       </View>
     )
@@ -343,6 +355,7 @@ export default class ExerciseView extends Component {
             navigator={this.props.navigator}
             text={this.props.userName}
           />
+          <Timer time={120000} />
         </View>
       </BackgroundImage>
     );
