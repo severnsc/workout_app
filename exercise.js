@@ -178,12 +178,12 @@ class ExerciseText extends Component {
     if(this.state.counter === 0){
       exerciseButtons = 
         <View>
-          <TouchableHighlight key="NextButton" onPress={() => this.nextExercise()} style={Styles.workoutButton}>
+          <TouchableHighlight underlayColor={"rgba(117,205,230,1)"} key="NextButton" onPress={() => this.nextExercise()} style={Styles.workoutButton}>
             <Text key="NextText" style={Styles.buttonText}>
               Next Exercise
             </Text>
           </TouchableHighlight>
-          <TouchableHighlight onPress={() => this.returnHome()} style={Styles.workoutButton}>
+          <TouchableHighlight underlayColor={"rgba(117,205,230,1)"} onPress={() => this.returnHome()} style={Styles.workoutButton}>
             <Text style={Styles.buttonText}>
               Return Home
             </Text>
@@ -192,12 +192,12 @@ class ExerciseText extends Component {
     }else if(this.state.counter < this.props.exerciseSet.length){
       exerciseButtons = 
         <View>
-          <TouchableHighlight key="NextButton" onPress={() => this.nextExercise()} style={Styles.workoutButton}>
+          <TouchableHighlight underlayColor={"rgba(117,205,230,1)"} key="NextButton" onPress={() => this.nextExercise()} style={Styles.workoutButton}>
             <Text key="NextText" style={Styles.buttonText}>
               Next Exercise
             </Text>
           </TouchableHighlight>
-          <TouchableHighlight key="PreviousButton" onPress={() => this.previousExercise()} style={Styles.workoutButton}>
+          <TouchableHighlight underlayColor={"rgba(117,205,230,1)"} key="PreviousButton" onPress={() => this.previousExercise()} style={Styles.workoutButton}>
             <Text key="PreviousText" style={Styles.buttonText}>
               Previous Exercise
             </Text>
@@ -206,12 +206,12 @@ class ExerciseText extends Component {
     }else{
       exerciseButtons = 
         <View>
-          <TouchableHighlight onPress={() => this.returnHome()} style={Styles.workoutButton}>
+          <TouchableHighlight underlayColor={"rgba(117,205,230,1)"} onPress={() => this.returnHome()} style={Styles.workoutButton}>
             <Text style={Styles.buttonText}>
               Return Home
             </Text>
           </TouchableHighlight>
-          <TouchableHighlight key="PreviousButton" onPress={() => this.previousExercise()} style={Styles.workoutButton}>
+          <TouchableHighlight underlayColor={"rgba(117,205,230,1)"} key="PreviousButton" onPress={() => this.previousExercise()} style={Styles.workoutButton}>
             <Text key="PreviousText" style={Styles.buttonText}>
               Previous Exercise
             </Text>

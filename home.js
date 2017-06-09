@@ -145,6 +145,7 @@ class SubmitButton extends Component {
       <TouchableHighlight 
         style={Styles.button} 
         onPress={this.props.onPress}
+        underlayColor={"rgba(117,205,230,1)"}
       >
         <Text style={Styles.buttonText}>
           {this.props.buttonText}
