@@ -104,6 +104,17 @@ export const Styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 24,
     fontFamily: 'Helvetica'
+  },
+  stopTimer: {
+    width:300,
+    flex: 1,
+    maxHeight: 50,
+    backgroundColor: "rgb(255, 153, 0)",
+    borderColor: "#0f0f0f",
+    borderWidth: 1,
+    borderRadius: 8,
+    marginTop: 10,
+    justifyContent: "center",
   }
 });
 
