@@ -81,7 +81,8 @@ const hardExercises = exercises.filter((e) => e.difficulty === 3);
 
 const repCounts = [10, 15, 20, 25, 30];
 
-const times = ["1 minute", "2 minute"];
+//One minute and Two minutes in ms
+const times = [60000, 120000];
 
 const alphabet = {A: 8.2, B: 1.5, C: 2.8, D: 4.3, E: 12.7, F: 2.2, G: 2.0, H: 6.1, I: 7.0, J: 0.2, K: 0.8, L: 4.0, M: 2.4, N: 6.7, O: 7.5, P: 1.9, Q: 0.1, R: 6.0, S: 6.3, T: 9.1, U: 2.8, V: 1.0, W: 2.4, X: 0.2, Y: 2.0, Z: 0.1};
 
@@ -107,6 +108,42 @@ function shuffle(array) {
   }
 
   return array;
+}
+
+class Timer extends Component {
+
+  constructor(props){
+    super(props);
+    this.state = {
+      minutes: 0,
+      seconds: 0,
+    }
+  }
+
+  calculateTime(){
+    const minutes = Math.floor(this.props.time / 60000);
+    const seconds = (this.props.time % 60000) / 1000;
+    this.setState({
+      minutes: minutes,
+      seconds: seconds,
+    })
+  }
+
+  render() {
+    return(
+      <View>
+        <Text>
+          {this.state.minutes} : {this.state.seconds}
+        </Text>
+        <TouchableHighlight 
+          style={Styles.button} 
+          onPress={() => this.calculateTime()}
+        >
+          Start
+        </TouchableHighlight>
+      </View>
+    )
+  }
 }
 
 class ExerciseText extends Component {
@@ -286,7 +323,8 @@ export default class ExerciseView extends Component {
       for(i=0; i<exerciseGroup.count; i++){
         const exercise = getRandomArrayItem(exerciseGroup.set);
         if(exercise.timed){
-          exerciseSet.push(getRandomArrayItem(times) + " " + exercise.name);
+          const time = getRandomArrayItem(times)/60000 + " minute";
+          exerciseSet.push(time + " " + exercise.name);
         }else{
           exerciseSet.push(getRandomArrayItem(repCounts) + " " + exercise.name);
         }
