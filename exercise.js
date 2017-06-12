@@ -173,6 +173,7 @@ class Timer extends Component {
   }
 
   calculateTime(){
+    console.log(this.state.time);
     const minutes = Math.floor(this.state.time / 60000);
     let seconds = (this.state.time % 60000) / 1000;
     if(seconds < 10){
@@ -195,6 +196,10 @@ class Timer extends Component {
     
     if(this.state.intervalID){
       timerButtonText = "Stop"
+    }
+
+    if(this.state.time < 0){
+      timerButtonText = "Reset"
     }
 
     return(
