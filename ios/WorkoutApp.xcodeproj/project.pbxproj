@@ -35,7 +35,6 @@
 		2D02E4C91E0B4AEC006451C7 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		2DCD954D1E0B4F2C00145EB5 /* WorkoutAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* WorkoutAppTests.m */; };
 		5B1F059E1EEED04200FB6555 /* alarm.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5B1F059D1EEED04200FB6555 /* alarm.wav */; };
-		5B1F05D11EEF089300FB6555 /* Alarm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B1F05D01EEF089300FB6555 /* Alarm.mp3 */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		EA1EDA33F4A946C783583CE9 /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD96556B92B64A118CA8AF64 /* libRNSound.a */; };
@@ -264,7 +263,6 @@
 		2D02E4901E0B4A5D006451C7 /* WorkoutApp-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WorkoutApp-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		33F9347105384164A830ADD3 /* RNSound.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSound.xcodeproj; path = "../node_modules/react-native-sound/RNSound.xcodeproj"; sourceTree = "<group>"; };
 		5B1F059D1EEED04200FB6555 /* alarm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = alarm.wav; path = ../alarm.wav; sourceTree = "<group>"; };
-		5B1F05D01EEF089300FB6555 /* Alarm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Alarm.mp3; path = ../Alarm.mp3; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
@@ -487,7 +485,6 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				5B1F05D01EEF089300FB6555 /* Alarm.mp3 */,
 				5B1F059D1EEED04200FB6555 /* alarm.wav */,
 				13B07FAE1A68108700A75B9A /* WorkoutApp */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -881,7 +878,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B1F05D11EEF089300FB6555 /* Alarm.mp3 in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				5B1F059E1EEED04200FB6555 /* alarm.wav in Resources */,
