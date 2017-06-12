@@ -155,7 +155,11 @@ class Timer extends Component {
     if(this.state.intervalID){
       this.stopTimer()
     }else{
-      this.startTimer()
+      if(this.state.time < 0){
+        this.setState({time: this.props.time}, this.calculateTime)
+      }else{
+        this.startTimer()
+      }
     }
   }
 
