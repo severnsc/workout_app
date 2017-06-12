@@ -96,7 +96,7 @@ const Sound = require('react-native-sound');
 Sound.setCategory('Playback');
 
 //Setup the alarm
-const alarm = new Sound('alarm.wav', Sound.MAIN_BUNDLE,(error) => {
+const alarm = new Sound('Alarm.wav', Sound.MAIN_BUNDLE,(error) => {
   if (error) {
     console.log('failed to load the sound', error);
     return;
@@ -137,7 +137,7 @@ class Timer extends Component {
   constructor(props){
     super(props);
     this.state = {
-      time: this.props.time,
+      time: 2000,
       minutes: 0,
       seconds: 0,
       intervalID: null,
@@ -280,7 +280,7 @@ class ExerciseText extends Component {
       if(currentExercise.timed){
         storedTimes[this.state.counter] = storedTimes[this.state.counter] || getRandomArrayItem(times);
         return(
-          <Timer time={storedTimes[this.state.counter]}>
+          <Timer key={this.state.counter} time={storedTimes[this.state.counter]}>
             <Text style={Styles.exerciseText}>{currentExercise.name}</Text>
           </Timer>
         )
