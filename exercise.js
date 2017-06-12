@@ -110,6 +110,11 @@ const alarm = new Sound('alarm.wav', Sound.MAIN_BUNDLE,(error) => {
 //Only play the alarm once
 alarm.setNumberOfLoops(1);
 
+//Setup stores (Objects to be used like hashes) for times and reps to keep exercises fixed when getCurrentExercise is called
+let storedTimes = {};
+
+let storedReps = {};
+
 function shuffle(array) {
   let currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -232,6 +237,9 @@ class ExerciseText extends Component {
       counter: 0,
     };
     this.animatedValue = new Animated.Value(0);
+    this.nextExercise = this.nextExercise.bind(this);
+    this.returnHome = this.returnHome.bind(this);
+    this.previousExercise = this.previousExercise.bind(this);
   }
 
   componentDidMount() {
@@ -272,13 +280,15 @@ class ExerciseText extends Component {
     if(this.state.counter < this.props.exerciseSet.length){
       const currentExercise = this.props.exerciseSet[this.state.counter];
       if(currentExercise.timed){
+        storedTimes[this.state.counter] = storedTimes[this.state.counter] || getRandomArrayItem(times);
         return(
-          <Timer time={getRandomArrayItem(times)}>
+          <Timer time={storedTimes[this.state.counter]}>
             <Text style={Styles.exerciseText}>{currentExercise.name}</Text>
           </Timer>
         )
       }else{
-        return getRandomArrayItem(repCounts) + " " + currentExercise.name
+        storedReps[this.state.counter] = storedReps[this.state.counter] || getRandomArrayItem(repCounts);
+        return storedReps[this.state.counter] + " " + currentExercise.name
       }
     }else{
       return "Workout Done!"
@@ -299,50 +309,48 @@ class ExerciseText extends Component {
       outputRange: [0, 1],
     })
 
-    let exerciseButtons = null;
+    let topOnPressFunction = null;
+    let topExerciseButtonText = "";
+    let bottomOnPressFunction = null;
+    let bottomExerciseButtonText = "";
     if(this.state.counter === 0){
-      exerciseButtons = 
-        <View>
-          <TouchableHighlight underlayColor={"rgba(117,205,230,1)"} key="NextButton" onPress={() => this.nextExercise()} style={Styles.workoutButton}>
-            <Text key="NextText" style={Styles.buttonText}>
-              Next Exercise
-            </Text>
-          </TouchableHighlight>
-          <TouchableHighlight underlayColor={"rgba(117,205,230,1)"} onPress={() => this.returnHome()} style={Styles.workoutButton}>
-            <Text style={Styles.buttonText}>
-              Return Home
-            </Text>
-          </TouchableHighlight>
-        </View>
+      topOnPressFunction = this.nextExercise;
+      topExerciseButtonText = "Next Exercise";
+      bottomOnPressFunction = this.returnHome;
+      bottomExerciseButtonText = "Return Home";
     }else if(this.state.counter < this.props.exerciseSet.length){
-      exerciseButtons = 
-        <View>
-          <TouchableHighlight underlayColor={"rgba(117,205,230,1)"} key="NextButton" onPress={() => this.nextExercise()} style={Styles.workoutButton}>
-            <Text key="NextText" style={Styles.buttonText}>
-              Next Exercise
-            </Text>
-          </TouchableHighlight>
-          <TouchableHighlight underlayColor={"rgba(117,205,230,1)"} key="PreviousButton" onPress={() => this.previousExercise()} style={Styles.workoutButton}>
-            <Text key="PreviousText" style={Styles.buttonText}>
-              Previous Exercise
-            </Text>
-          </TouchableHighlight>
-        </View>
+      topOnPressFunction = this.nextExercise;
+      topExerciseButtonText = "Next Exercise";
+      bottomOnPressFunction = this.previousExercise;
+      bottomExerciseButtonText = "Previous Exercise";
     }else{
-      exerciseButtons = 
-        <View>
-          <TouchableHighlight underlayColor={"rgba(117,205,230,1)"} onPress={() => this.returnHome()} style={Styles.workoutButton}>
-            <Text style={Styles.buttonText}>
-              Return Home
-            </Text>
-          </TouchableHighlight>
-          <TouchableHighlight underlayColor={"rgba(117,205,230,1)"} key="PreviousButton" onPress={() => this.previousExercise()} style={Styles.workoutButton}>
-            <Text key="PreviousText" style={Styles.buttonText}>
-              Previous Exercise
-            </Text>
-          </TouchableHighlight>
-        </View>
+      topOnPressFunction = this.returnHome;
+      topExerciseButtonText = "Return Home";
+      bottomOnPressFunction = this.previousExercise;
+      bottomExerciseButtonText = "Previous Exercise";
     }
+
+    const exerciseButtons = 
+      <View>
+        <TouchableHighlight 
+          underlayColor={"rgba(117,205,230,1)"} 
+          onPress={() => topOnPressFunction()} 
+          style={Styles.workoutButton}
+        >
+          <Text style={Styles.buttonText}>
+            {topExerciseButtonText}
+          </Text>
+        </TouchableHighlight>
+        <TouchableHighlight 
+          underlayColor={"rgba(117,205,230,1)"} 
+          onPress={() => bottomOnPressFunction()}
+          style={Styles.workoutButton}
+        >
+          <Text key="PreviousText" style={Styles.buttonText}>
+            {bottomExerciseButtonText}
+          </Text>
+        </TouchableHighlight>
+      </View>
 
     let name = null;
     if(this.state.counter < this.props.text.length){
