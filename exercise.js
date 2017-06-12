@@ -137,7 +137,7 @@ class Timer extends Component {
   constructor(props){
     super(props);
     this.state = {
-      time: 2000,
+      time: this.props.time,
       minutes: 0,
       seconds: 0,
       intervalID: null,
