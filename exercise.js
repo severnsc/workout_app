@@ -91,6 +91,25 @@ const getRandomArrayItem = function(array){
   return rand;
 }
 
+//Require sound library
+const Sound = require('react-native-sound');
+
+//Play even when on silent mode in iOS
+Sound.setCategory('Playback');
+
+//Setup the alarm
+const alarm = new Sound('alarm.wav', Sound.MAIN_BUNDLE,(error) => {
+  if (error) {
+    console.log('failed to load the sound', error);
+    return;
+  } 
+  // loaded successfully
+  console.log('duration in seconds: ' + alarm.getDuration() + 'number of channels: ' + alarm.getNumberOfChannels());
+});
+
+//Only play the alarm once
+alarm.setNumberOfLoops(1);
+
 function shuffle(array) {
   let currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -142,12 +161,18 @@ class Timer extends Component {
 
   timerEnd(){
     if(this.state.time === 0){
-      stopTimer()
+      alarm.play((success) => {
+      if (success) {
+        console.log('successfully finished playing');
+      } else {
+        console.log('playback failed due to audio decoding errors');
+      }
+    });
+      this.stopTimer();
     }
   }
 
   calculateTime(){
-    console.log(this.state.time);
     const minutes = Math.floor(this.state.time / 60000);
     let seconds = (this.state.time % 60000) / 1000;
     if(seconds < 10){
