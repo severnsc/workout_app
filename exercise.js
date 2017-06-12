@@ -142,7 +142,7 @@ class Timer extends Component {
 
   timerEnd(){
     if(this.state.time === 0){
-      clearInterval(this.state.intervalID)
+      stopTimer()
     }
   }
 
