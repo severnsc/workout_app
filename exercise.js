@@ -70,6 +70,26 @@ const exercises = [
     name: "Dips",
     difficulty: 1,
     timed: false
+  },
+  {
+    name: "Calf Raises",
+    difficulty: 1,
+    timed: false
+  },
+  {
+    name: "Wall Jumps",
+    difficulty: 2,
+    timed: false
+  },
+  {
+    name: "Wide Pushups",
+    diffifulty: 2,
+    timed: false
+  },
+  {
+    name: "Bicycles",
+    difficulty: 1,
+    timed: true
   }
 ];
 
